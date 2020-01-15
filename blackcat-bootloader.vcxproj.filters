@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{09d95a0f-a762-48ab-85a5-3b271c6ae80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{91310c68-e573-4544-99cb-3d1637f2197d}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\usb">
+      <UniqueIdentifier>{5aaaf786-50cb-46fd-adad-936cf3344214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\app">
+      <UniqueIdentifier>{058ae848-44a8-4f91-8afe-c12fb9cd33f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\common">
+      <UniqueIdentifier>{c37065e4-b854-4999-810a-79a952309e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\common\core">
+      <UniqueIdentifier>{0e3b525b-00c4-4251-a57d-e7cefcefc6d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\common\masstorage">
+      <UniqueIdentifier>{41b41618-a16d-434e-8f59-f666a42d3b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\device">
+      <UniqueIdentifier>{275f2dde-0cba-4969-97e3-e8c04e0e390e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\device\core">
+      <UniqueIdentifier>{0665d62c-a3bd-49d9-932c-f38d6fc69b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\usb\device\masstorage">
+      <UniqueIdentifier>{ba0cbef9-2562-4ece-9ab1-0772a7ea541a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ATSAM3S.xml">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ATSAM3S.props">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <LinkerScript Include="src\sam3s8c_boot.ld" />
+    <LinkerScript Include="src\apps\atmel_ramApp.ld">
+      <Filter>src\app</Filter>
+    </LinkerScript>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\board_lowlevel.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ccsbcs.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core_cm3.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\crt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEDSdcard.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\misc.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vectors_sam3s.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\aspi.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\boot.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootsamEeprom.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\diskio.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\driversboot.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ff.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ff_lfn.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\i2c_ee.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lcd_driver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lcdboot.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logicioboot.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\massstorage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mega64.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\power.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sdcard_driver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usbd_storage_msd.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usbd_usr.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\x9ddiskio.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_bsp.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_core.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_dcd.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_dcd_int.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_core.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_desc.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_ioreq.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_bot.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_core.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_data.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_scsi.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_req.c">
+      <Filter>src\usb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBConfigurationDescriptor.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBEndpointDescriptor.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBFeatureRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGenericDescriptor.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGenericRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGetDescriptorRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBInterfaceRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBIrqHandler.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBSetAddressRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBSetConfigurationRequest.c">
+      <Filter>src\usb\common\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBD_UDP.c">
+      <Filter>src\usb\device\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBDCallbacks.c">
+      <Filter>src\usb\device\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBDDriver.c">
+      <Filter>src\usb\device\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDriver.c">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDriverDescriptors.c">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDStateMachine.c">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDLun.c">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\SBCMethods.c">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\ChangId.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\flashCoProc.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\flashMulti.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\menucontrol.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\Sport.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\apps\swSerial.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fat12.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\aspi.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AT91SAM3S4.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\board.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\chip.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core_cm3.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\diskio.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\drivers.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\eeprom_rlc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ersky9x.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ff.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ffconf.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\file.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gtime.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\i2c_ee.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\integer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lcd.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logicio.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Media.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mega64.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\misc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MSD.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MSDDriver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MSDLun.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\myeeprom.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\radio.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rtc.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SBC.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\timers.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_bsp.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_conf.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_core.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_dcd.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_dcd_int.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_defines.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_regs.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_conf.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_core.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_def.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_desc.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_ioreq.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_bot.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_core.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_data.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_mem.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_scsi.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_req.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_usr.h">
+      <Filter>src\usb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBConfigurationDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBDeviceDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBDeviceQualifierDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBEndpointDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBFeatureRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGenericDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGenericRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGetDescriptorRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceAssociationDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBIrqHandler.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBSetAddressRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBSetConfigurationRequest.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBStringDescriptor.h">
+      <Filter>src\usb\common\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\massstorage\MSDeviceDescriptor.h">
+      <Filter>src\usb\common\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\massstorage\MSInterfaceDescriptor.h">
+      <Filter>src\usb\common\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBD.h">
+      <Filter>src\usb\device\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDCallbacks.h">
+      <Filter>src\usb\device\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriver.h">
+      <Filter>src\usb\device\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriverCallbacks.h">
+      <Filter>src\usb\device\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriverDescriptors.h">
+      <Filter>src\usb\device\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDDriverDescriptors.h">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDDStateMachine.h">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDIOFifo.h">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\SBCMethods.h">
+      <Filter>src\usb\device\masstorage</Filter>
+    </ClInclude>
+    <ClInclude Include="src\apps\menucontrol.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

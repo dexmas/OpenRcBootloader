@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<EmbeddedProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+  <ToolchainVersion>
+    <GCC>9.2.1</GCC>
+    <GDB>8.3.0</GDB>
+    <Revision>1</Revision>
+  </ToolchainVersion>
+  <BspID>com.visualgdb.bsp.in-place</BspID>
+  <BspVersion>1.0</BspVersion>
+  <McuID>ATSAM3S8C</McuID>
+  <MCUDefinitionFile>ATSAM3S.xml</MCUDefinitionFile>
+  <MCUProperties>
+    <Entries />
+  </MCUProperties>
+  <BSPSourceFolderName>Device-specific files</BSPSourceFolderName>
+  <InPlaceMCU>
+    <ID>ATSAM3S8C</ID>
+    <UserFriendlyName>ATSAM3S8C</UserFriendlyName>
+    <CompilationFlags>
+      <PreprocessorMacros />
+      <IncludeDirectories />
+      <CFLAGS />
+      <CXXFLAGS />
+      <LDFLAGS />
+      <ASFLAGS />
+      <LinkerScript />
+      <COMMONFLAGS>-mcpu=cortex-m3 -mthumb</COMMONFLAGS>
+      <EnableLinkerGroups>true</EnableLinkerGroups>
+    </CompilationFlags>
+    <AdditionalSourceFiles />
+    <AdditionalHeaderFiles />
+    <AdditionalSystemVars>
+      <SysVarEntry>
+        <Key>com.sysprogs.bspoptions.arm.core</Key>
+        <Value>M3</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.atmel.sam32._header_prefix</Key>
+        <Value>sam3s8</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.atmel.sam32.dirutils</Key>
+        <Value>sam</Value>
+      </SysVarEntry>
+      <SysVarEntry>
+        <Key>com.sysprogs.atmel.sam32._header_prefix_sam0</Key>
+        <Value>no</Value>
+      </SysVarEntry>
+    </AdditionalSystemVars>
+    <ConfigurableProperties>
+      <PropertyGroups>
+        <PropertyGroup>
+          <Properties>
+            <PropertyEntry xsi:type="Enumerated">
+              <Name>Execute from</Name>
+              <UniqueID>com.sysprogs.bspoptions.primary_memory</UniqueID>
+              <OmitPrefixIfEmpty>false</OmitPrefixIfEmpty>
+              <SuggestionList>
+                <Suggestion>
+                  <UserFriendlyName>FLASH</UserFriendlyName>
+                  <InternalValue>flash</InternalValue>
+                </Suggestion>
+                <Suggestion>
+                  <UserFriendlyName>SRAM</UserFriendlyName>
+                  <InternalValue>sram</InternalValue>
+                </Suggestion>
+              </SuggestionList>
+              <DefaultEntryIndex>0</DefaultEntryIndex>
+              <AllowFreeEntry>false</AllowFreeEntry>
+            </PropertyEntry>
+          </Properties>
+          <CollapsedByDefault>false</CollapsedByDefault>
+        </PropertyGroup>
+      </PropertyGroups>
+    </ConfigurableProperties>
+    <HierarchicalPath>Atmel\SAM3s8</HierarchicalPath>
+    <FamilyID>SAM3s8</FamilyID>
+    <FLASHSize>524288</FLASHSize>
+    <RAMSize>65536</RAMSize>
+    <FLASHBase>4194304</FLASHBase>
+    <RAMBase>536870912</RAMBase>
+    <MCUDefinitionFile>ATSAM3S.xml</MCUDefinitionFile>
+    <AdditionalSourcesRequiredForTesting>false</AdditionalSourcesRequiredForTesting>
+  </InPlaceMCU>
+  <MCUMakFile>atmel.mak</MCUMakFile>
+  <TestFrameworkProperties>
+    <Entries />
+  </TestFrameworkProperties>
+</EmbeddedProfile>

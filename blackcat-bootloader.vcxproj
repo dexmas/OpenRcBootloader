@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="flashfrsky|VisualGDB">
+      <Configuration>flashfrsky</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="flashmulti|VisualGDB">
+      <Configuration>flashmulti</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="bootloader|VisualGDB">
+      <Configuration>bootloader</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{838CF6E3-0038-4491-B9F6-1474F84F159E}</ProjectGuid>
+    <BSP_ID>com.visualgdb.bsp.in-place</BSP_ID>
+    <BSP_VERSION>1.0</BSP_VERSION>
+    <InPlaceBSPSubdir />
+    <ProjectName>blackcat-bootloader</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">
+    <MCUPropertyListFile>$(ProjectDir)ATSAM3S.props</MCUPropertyListFile>
+    <GenerateHexFile>true</GenerateHexFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'" Label="Configuration">
+    <MCUPropertyListFile>$(ProjectDir)ATSAM3S.props</MCUPropertyListFile>
+    <GenerateHexFile>true</GenerateHexFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'" Label="Configuration">
+    <MCUPropertyListFile>$(ProjectDir)ATSAM3S.props</MCUPropertyListFile>
+    <GenerateHexFile>true</GenerateHexFile>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">
+    <VisualGDBSettingsFile>$(Configuration).vgdbsettings</VisualGDBSettingsFile>
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>temp\</IntDir>
+    <TargetExt>.elf</TargetExt>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>9.2.1/8.3.0/r1</ToolchainVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">
+    <VisualGDBSettingsFile>$(Configuration).vgdbsettings</VisualGDBSettingsFile>
+    <OutDir>$(SolutionDir)build\app\</OutDir>
+    <IntDir>temp\app\</IntDir>
+    <TargetExt>.elf</TargetExt>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>9.2.1/8.3.0/r1</ToolchainVersion>
+    <TargetName>flashmulti</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">
+    <VisualGDBSettingsFile>$(Configuration).vgdbsettings</VisualGDBSettingsFile>
+    <OutDir>$(SolutionDir)build\app\</OutDir>
+    <IntDir>temp\app\</IntDir>
+    <TargetExt>.elf</TargetExt>
+    <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
+    <ToolchainVersion>9.2.1/8.3.0/r1</ToolchainVersion>
+    <TargetName>flashfrsky</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">
+    <ClCompile>
+      <PreprocessorDefinitions>CPUARM;at91sam3s8;PCBSKY;REVX;RUN_FROM_FLASH=1;BOOT;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;src\usb;data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderDirectory />
+      <Optimization>Os</Optimization>
+      <OmitFramePointer>true</OmitFramePointer>
+    </ClCompile>
+    <ToolchainSettingsContainer>
+      <InstructionSet>THUMB</InstructionSet>
+    </ToolchainSettingsContainer>
+    <ToolchainSettingsContainer>
+      <ARMCPU>cortex-m3</ARMCPU>
+    </ToolchainSettingsContainer>
+    <Link />
+    <Link>
+      <LinkerScript>src/sam3s8c_boot.ld</LinkerScript>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">
+    <ClCompile>
+      <PreprocessorDefinitions>at91sam3s8;PCBSKY;APP;BOOT;REVX;RUN_FROM_FLASH=0;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;src\app;data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderDirectory>
+      </PrecompiledHeaderDirectory>
+      <Optimization>Os</Optimization>
+      <OmitFramePointer>true</OmitFramePointer>
+    </ClCompile>
+    <ToolchainSettingsContainer>
+      <InstructionSet>THUMB</InstructionSet>
+    </ToolchainSettingsContainer>
+    <ToolchainSettingsContainer>
+      <ARMCPU>cortex-m3</ARMCPU>
+    </ToolchainSettingsContainer>
+    <Link />
+    <Link>
+      <LinkerScript>src/apps/atmel_ramApp.ld</LinkerScript>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <RemoveUnusedSections>false</RemoveUnusedSections>
+      <AdditionalOptions>-mthumb -nostartfiles %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">
+    <ClCompile>
+      <PreprocessorDefinitions>at91sam3s8;PCBSKY;APP;BOOT;REVX;RUN_FROM_FLASH=0;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;src\app;data;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderDirectory>
+      </PrecompiledHeaderDirectory>
+      <Optimization>Os</Optimization>
+      <OmitFramePointer>true</OmitFramePointer>
+    </ClCompile>
+    <ToolchainSettingsContainer>
+      <InstructionSet>THUMB</InstructionSet>
+    </ToolchainSettingsContainer>
+    <ToolchainSettingsContainer>
+      <ARMCPU>cortex-m3</ARMCPU>
+    </ToolchainSettingsContainer>
+    <Link />
+    <Link>
+      <LinkerScript>src/apps/atmel_ramApp.ld</LinkerScript>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <RemoveUnusedSections>false</RemoveUnusedSections>
+      <AdditionalOptions>-mthumb -nostartfiles %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <None Include="ATSAM3S.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ATSAM3S.props">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <LinkerScript Include="src\apps\atmel_ramApp.ld">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+    </LinkerScript>
+    <LinkerScript Include="src\sam3s8c_boot.ld">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </LinkerScript>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\apps\ChangId.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\apps\flashCoProc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\apps\flashMulti.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\apps\menucontrol.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\apps\Sport.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\apps\swSerial.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\aspi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\board_lowlevel.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\boot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\bootsamEeprom.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ccsbcs.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\core_cm3.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\crt.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\diskio.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\driversboot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Fat12.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ff.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ff_lfn.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\i2c_ee.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\lcdboot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\lcd_driver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\logicioboot.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\massstorage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\MEDSdcard.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\mega64.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\misc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\power.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\sdcard_driver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usbd_storage_msd.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usbd_usr.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBConfigurationDescriptor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBEndpointDescriptor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBFeatureRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGenericDescriptor.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGenericRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBGetDescriptorRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBInterfaceRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBIrqHandler.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBSetAddressRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\common\core\USBSetConfigurationRequest.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBDCallbacks.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBDDriver.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\core\USBD_UDP.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDriver.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDriverDescriptors.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDDStateMachine.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\MSDLun.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\device\massstorage\SBCMethods.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_desc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_ioreq.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_bot.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_data.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_msc_scsi.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usbd_req.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_bsp.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_dcd.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\usb\usb_dcd_int.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\vectors_sam3s.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\x9ddiskio.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\apps\menucontrol.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\aspi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\AT91SAM3S4.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\board.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\chip.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\core_cm3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\debug.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\diskio.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\drivers.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\eeprom_rlc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\ersky9x.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\ff.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\ffconf.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\file.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\gtime.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\hal.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\i2c_ee.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\integer.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\lcd.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\logicio.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\Media.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\mega64.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\misc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\MSD.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\MSDDriver.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\MSDLun.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\myeeprom.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\radio.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\rtc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\SBC.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\timers.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBConfigurationDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBDeviceDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBDeviceQualifierDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBEndpointDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBFeatureRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGenericDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGenericRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBGetDescriptorRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceAssociationDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBInterfaceRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBIrqHandler.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBSetAddressRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBSetConfigurationRequest.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\core\USBStringDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\massstorage\MSDeviceDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\common\massstorage\MSInterfaceDescriptor.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBD.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDCallbacks.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriver.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriverCallbacks.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\core\USBDDriverDescriptors.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDDriverDescriptors.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDDStateMachine.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\MSDIOFifo.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\device\massstorage\SBCMethods.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_conf.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_core.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_def.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_desc.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_ioreq.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_bot.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_core.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_data.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_mem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_msc_scsi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_req.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usbd_usr.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_bsp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_conf.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_core.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_dcd.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_dcd_int.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_defines.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="src\usb\usb_regs.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='bootloader|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashmulti|VisualGDB'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='flashfrsky|VisualGDB'">true</ExcludedFromBuild>
+    </ClInclude>
+  </ItemGroup>
+</Project>
