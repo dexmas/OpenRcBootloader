@@ -1,0 +1,6 @@
+/.vs
+/temp
+/*.user
+*.elf
+*.hex
+*.rsp
